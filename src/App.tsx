@@ -2,26 +2,32 @@ import { Scanner } from './components/Scanner.tsx'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            Cloudflare Radar URL Scanner
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 text-lg">
-            Scan any URL for security threats, technologies, and network analysis
-          </p>
+    <div className="h-screen flex flex-col bg-gradient-to-br from-gray-50 via-orange-50/30 to-gray-100 overflow-hidden">
+      {/* Compact Header */}
+      <header className="border-b border-gray-200 bg-white/90 backdrop-blur-md shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <img src="/logo.png" alt="RadarScan Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
+              <div>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
+                  Radar<span className="text-[#F6821F]">Scan</span>
+                </h1>
+                <p className="text-xs text-gray-600 hidden sm:block">Scan URLs with Cloudflare Radar • Get instant PDF reports</p>
+              </div>
+            </div>
+            <div className="hidden sm:flex items-center gap-2 text-xs text-gray-500">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <span>Live</span>
+            </div>
+          </div>
         </div>
+      </header>
 
-        {/* Main Scanner Component */}
+      {/* Main Content - Flex grow to fill remaining space */}
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-4 sm:py-6 overflow-auto">
         <Scanner />
-
-        {/* Footer */}
-        <div className="text-center mt-12 text-sm text-slate-500 dark:text-slate-400">
-          <p>Powered by Cloudflare Workers, Durable Objects, and Radar API</p>
-        </div>
-      </div>
+      </main>
     </div>
   )
 }

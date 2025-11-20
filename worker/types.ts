@@ -44,16 +44,35 @@ export interface RadarScanResponse {
 
 export interface RadarScanResult {
   data: {
-    requests: unknown[];
-    cookies: unknown[];
-    console: unknown[];
-    links: unknown[];
+    requests: Array<{
+      url: string;
+      type?: string;
+      status?: number;
+      method?: string;
+    }>;
+    cookies: Array<{
+      name: string;
+      domain?: string;
+      secure?: boolean;
+      httpOnly?: boolean;
+      sameSite?: string;
+    }>;
+    console: Array<{
+      type: string;
+      message: string;
+    }>;
+    links: Array<{
+      href: string;
+      text?: string;
+    }>;
   };
   lists: {
     domains: string[];
     ips: string[];
     asns: string[];
     countries: string[];
+    urls?: string[];
+    certificates?: string[];
   };
   meta: {
     processors: {
@@ -62,10 +81,15 @@ export interface RadarScanResult {
           app: string;
           categories: Array<{ name: string }>;
           confidenceTotal: number;
+          version?: string;
         }>;
       };
       phishing?: {
         data: string[];
+      };
+      rank?: {
+        bucket?: string;
+        name?: string;
       };
     };
   };
@@ -77,23 +101,45 @@ export interface RadarScanResult {
     asn: string;
     status: string;
     title?: string;
+    server?: string;
+    securityDetails?: {
+      protocol?: string;
+      issuer?: string;
+      validFrom?: string;
+      validTo?: string;
+    };
   };
   verdicts: {
     overall: {
       malicious: boolean;
       categories: string[];
       tags: string[];
+      score?: number;
+    };
+    urlScanners?: {
+      [key: string]: {
+        malicious: boolean;
+      };
     };
   };
   stats: {
     dataLength: number;
     uniqIPs: number;
     uniqCountries: number;
+    secureRequests?: number;
+    IPv6Percentage?: number;
+    adBlocked?: number;
+    malicious?: {
+      requests?: number;
+      domains?: number;
+    };
   };
   task: {
     uuid: string;
     url: string;
     time: string;
     visibility: string;
+    method?: string;
+    userAgent?: string;
   };
 }

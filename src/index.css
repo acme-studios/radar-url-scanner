@@ -1,21 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(9% 0.01 285);
-  --color-primary: oklch(53% 0.2 264);
-  --color-primary-foreground: oklch(98% 0 0);
-  --color-secondary: oklch(96% 0 0);
-  --color-secondary-foreground: oklch(11% 0.01 285);
-  --color-muted: oklch(96% 0 0);
-  --color-muted-foreground: oklch(47% 0.01 285);
-  --color-accent: oklch(96% 0 0);
-  --color-accent-foreground: oklch(11% 0.01 285);
-  --color-destructive: oklch(60% 0.2 25);
+  /* Cloudflare Orange & Black Theme */
+  --color-background: oklch(98% 0 0);
+  --color-foreground: oklch(15% 0 0);
+  --color-primary: oklch(65% 0.19 45); /* Cloudflare Orange #F6821F */
+  --color-primary-foreground: oklch(100% 0 0);
+  --color-secondary: oklch(20% 0 0); /* Dark Black */
+  --color-secondary-foreground: oklch(98% 0 0);
+  --color-muted: oklch(92% 0 0);
+  --color-muted-foreground: oklch(50% 0 0);
+  --color-accent: oklch(65% 0.19 45); /* Orange accent */
+  --color-accent-foreground: oklch(100% 0 0);
+  --color-destructive: oklch(55% 0.22 25);
   --color-destructive-foreground: oklch(98% 0 0);
-  --color-border: oklch(91% 0.01 285);
-  --color-input: oklch(91% 0.01 285);
-  --color-ring: oklch(53% 0.2 264);
+  --color-border: oklch(88% 0 0);
+  --color-input: oklch(95% 0 0);
+  --color-ring: oklch(65% 0.19 45);
+  
+  /* Custom colors */
+  --color-orange: #F6821F;
+  --color-orange-light: #FF9A3C;
+  --color-orange-dark: #E5751A;
+  --color-black: #0F0F0F;
+  --color-gray-dark: #1A1A1A;
+  --color-gray: #2A2A2A;
+  --color-gray-light: #F5F5F5;
 }
 
 * {
@@ -23,6 +33,47 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background: linear-gradient(135deg, #FAFAFA 0%, #F5F5F5 100%);
   color: var(--color-foreground);
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Cursor pointer for interactive elements */
+button, a, input[type="submit"], [role="button"] {
+  cursor: pointer;
+}
+
+button:disabled, [disabled] {
+  cursor: not-allowed;
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-orange {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(246, 130, 31, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(246, 130, 31, 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-pulse-orange {
+  animation: pulse-orange 2s infinite;
 }

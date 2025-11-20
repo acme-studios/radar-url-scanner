@@ -56,29 +56,28 @@ export function ResultsCard({ sessionId, url, onReset }: ResultsCardProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
-      <div className="text-center mb-8">
-        <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-200 animate-fade-in max-w-md mx-auto">
+      <div className="text-center mb-6">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-[#F6821F] to-[#FF9A3C] rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+          <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
           Scan Complete!
         </h2>
-        <p className="text-slate-600 dark:text-slate-400">
-          Your security report for <span className="font-semibold">{url}</span> is ready
+        <p className="text-sm text-gray-600">
+          Report ready for <span className="font-semibold text-[#F6821F]">{url}</span>
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 max-w-sm mx-auto">
         {/* Download Button */}
         <Button
           onClick={handleDownload}
-          className="w-full h-12 text-base font-semibold"
-          size="lg"
+          className="w-full h-11 sm:h-12 text-sm sm:text-base font-bold bg-gradient-to-r from-[#F6821F] to-[#FF9A3C] hover:from-[#E5751A] hover:to-[#F6821F] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
         >
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
           Download PDF Report
@@ -89,11 +88,9 @@ export function ResultsCard({ sessionId, url, onReset }: ResultsCardProps) {
           !showEmailInput ? (
             <Button
               onClick={() => setShowEmailInput(true)}
-              variant="outline"
-              className="w-full h-12 text-base font-semibold"
-              size="lg"
+              className="w-full h-11 sm:h-12 text-sm sm:text-base font-bold bg-gray-900 hover:bg-gray-800 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
               Send Report via Email
@@ -105,14 +102,14 @@ export function ResultsCard({ sessionId, url, onReset }: ResultsCardProps) {
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F6821F] focus:border-[#F6821F] transition-all duration-200"
                 disabled={isSendingEmail}
               />
               <div className="flex gap-2">
                 <Button
                   onClick={handleSendEmail}
                   disabled={isSendingEmail}
-                  className="flex-1"
+                  className="flex-1 bg-gradient-to-r from-[#F6821F] to-[#FF9A3C] hover:from-[#E5751A] hover:to-[#F6821F] text-white rounded-xl font-bold"
                 >
                   {isSendingEmail ? 'Sending...' : 'Send Email'}
                 </Button>
@@ -121,8 +118,8 @@ export function ResultsCard({ sessionId, url, onReset }: ResultsCardProps) {
                     setShowEmailInput(false)
                     setEmailError(null)
                   }}
-                  variant="outline"
                   disabled={isSendingEmail}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl font-bold"
                 >
                   Cancel
                 </Button>
@@ -130,27 +127,29 @@ export function ResultsCard({ sessionId, url, onReset }: ResultsCardProps) {
             </div>
           )
         ) : (
-          <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center">
-            <p className="text-sm text-green-700 dark:text-green-300 font-medium">
+          <div className="bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4 text-center animate-slide-in">
+            <p className="text-sm text-green-700 font-medium">
               ✓ Email sent successfully to {emailInput}
             </p>
           </div>
         )}
 
         {emailError && (
-          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-            <p className="text-sm text-red-700 dark:text-red-300">{emailError}</p>
+          <div className="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 animate-slide-in">
+            <p className="text-sm text-red-700">{emailError}</p>
           </div>
         )}
       </div>
 
       {/* Start New Scan */}
-      <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+      <div className="mt-6 pt-4 border-t border-gray-200">
         <Button
           onClick={onReset}
-          variant="ghost"
-          className="w-full"
+          className="w-full bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-200 rounded-xl font-bold transition-all duration-200"
         >
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
           Start New Scan
         </Button>
       </div>

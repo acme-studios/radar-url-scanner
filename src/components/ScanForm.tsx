@@ -16,11 +16,11 @@ export function ScanForm({ onSubmit, isSubmitting, error }: ScanFormProps) {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-200 animate-fade-in max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-sm mx-auto">
         <div>
-          <label htmlFor="url" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-            URL to Scan
+          <label htmlFor="url" className="block text-sm font-semibold text-gray-700 mb-2">
+            Enter URL to Scan
           </label>
           <input
             id="url"
@@ -29,23 +29,30 @@ export function ScanForm({ onSubmit, isSubmitting, error }: ScanFormProps) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://example.com"
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F6821F] focus:border-[#F6821F] transition-all duration-200"
             disabled={isSubmitting}
           />
         </div>
 
         {error && (
-          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-            <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+          <div className="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 animate-slide-in">
+            <p className="text-sm text-red-700">{error}</p>
           </div>
         )}
 
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-12 text-base font-semibold"
+          className="w-full h-12 text-base font-bold bg-gradient-to-r from-[#F6821F] to-[#FF9A3C] hover:from-[#E5751A] hover:to-[#F6821F] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? 'Starting Scan...' : 'Start Scan'}
+          {isSubmitting ? (
+            <span className="flex items-center justify-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              Starting Scan...
+            </span>
+          ) : (
+            'Start Security Scan'
+          )}
         </Button>
       </form>
     </div>

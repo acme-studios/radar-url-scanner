@@ -1,0 +1,8 @@
+# Cloudflare API Token with Radar API access
+CLOUDFLARE_API_TOKEN=your_cloudflare_api_token_here
+
+# Resend API Key for email delivery
+RESEND_API_KEY=your_resend_api_key_here
+
+# Optional: Custom from address for emails (defaults to onboarding@resend.dev)
+# RESEND_FROM=RadarScan <noreply@yourdomain.com>
